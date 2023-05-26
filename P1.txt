@@ -1,0 +1,66 @@
+'''1.Data Wrangling, I
+Perform the following operations using Python on any open source dataset (e.g., data.csv)
+1.	Import all the required Python Libraries.
+2.	Locate an open source data from the web (e.g. https://www.kaggle.com). Provide a clear description of the data and its source (i.e., URL of the web site).
+3.	Load the Dataset into pandas data frame.
+4.	Data Preprocessing: check for missing values in the data using pandas isnull(), describe() function to get some initial statistics. Provide variable descriptions. Types of variables etc. Check the dimensions of the data frame.
+5.	Return the first n rows.
+6.	Return the last n rows.
+7.	The index (row labels) of the Dataset.
+8.	The column labels of the Dataset.
+9.	Return a tuple representing the dimensionality of the Dataset'''
+
+# 1. Import the required Python libraries
+import pandas as pd
+
+# 2. Specify the path to the dataset file on your PC
+dataset_path = "D:\TE(Sixth Semister)\DSBDA\Datasets\Social_Network_Ads.csv"
+
+# 3. Load the dataset into a pandas DataFrame
+df = pd.read_csv(dataset_path)
+
+# 4. Data Preprocessing
+# Check for missing values
+missing_values = df.isnull().sum()
+print("Missing values:\n", missing_values)
+
+# Get initial statistics
+description = df.describe()
+print("Initial statistics:\n", description)
+
+# Variable descriptions and types of variables
+variable_descriptions = {
+    "column1": "Description of column1",
+    "column2": "Description of column2",
+    # Add descriptions for other columns
+}
+print("Variable descriptions:\n", variable_descriptions)
+
+# Dimensions of the DataFrame
+num_rows, num_columns = df.shape
+print("Number of rows:", num_rows)
+print("Number of columns:", num_columns)
+
+# 5. Return the first n rows
+n = 5  # Specify the number of rows
+first_n_rows = df.head(n)
+print("First", n, "rows:\n", first_n_rows)
+
+# 6. Return the last n rows
+last_n_rows = df.tail(n)
+print("Last", n, "rows:\n", last_n_rows)
+
+# 7. Index (row labels) of the DataFrame
+row_labels = df.index
+print("Row labels:\n", row_labels)
+
+# 8. Column labels of the DataFrame
+column_labels = df.columns
+print("Column labels:\n", column_labels)
+
+# 9. Dimensionality of the DataFrame
+dimensionality = df.shape
+print("Dimensionality (rows, columns):\n", dimensionality)
+
+
+

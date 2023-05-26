@@ -1,0 +1,22 @@
+'''3.Data Wrangling, I
+Perform the following operations using Python on any open source dataset (e.g., data.csv)
+1.	Import all the required Python Libraries.
+2.	Locate an open source data from the web (e.g. https://www.kaggle.com). Provide a clear description of the data and its source (i.e., URL of the web site).
+3.	Load the Dataset into pandas data frame.
+4.	Data Preprocessing: check for missing values in the data using pandas isnull(), describe() function to get some initial statistics. Provide variable descriptions. Types of variables etc. Check the dimensions of the data frame.
+5.	Sort values by column name.
+6.	Purely integer-location based indexing for selection by position.
+7.	Selecting via [], which slices the rows.
+8.	Selection by label
+'''
+
+import pandas as pd
+df= pd.read_csv(r"C:\Users\Apurva\Desktop\dsbda\DSBDA\Databases\movies edited.csv")
+df
+df.isnull()
+df.describe()
+df.shape
+df.sort_values(by='votes')
+df.iloc[5]
+df[0:3]
+df.loc[:,['votes','imdb_rating']]

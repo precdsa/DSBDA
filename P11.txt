@@ -1,0 +1,59 @@
+'''11. Text Analytics
+1.	Extract Sample document and apply following document preprocessing methods: Tokenization, POS Tagging, stop words removal, Stemming and Lemmatization.
+2.	Create representation of document by calculating Term Frequency and Inverse Document
+Frequency.'''
+
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Sample Document
+document = "This is a sample document. It contains multiple sentences."
+
+# Tokenization
+tokens = word_tokenize(document)
+
+# POS Tagging
+pos_tags = nltk.pos_tag(tokens)
+
+# Stop Words Removal
+stop_words = set(stopwords.words("english"))
+filtered_tokens = [token for token in tokens if token.lower() not in stop_words]
+
+# Stemming
+stemmer = PorterStemmer()
+stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
+
+# Lemmatization
+lemmatizer = WordNetLemmatizer()
+lemmatized_tokens = [lemmatizer.lemmatize(token) for token in filtered_tokens]
+
+# Term Frequency (TF)
+tf_vectorizer = TfidfVectorizer(use_idf=False)
+tf_representation = tf_vectorizer.fit_transform([document])
+tf_features = tf_vectorizer.get_feature_names_out()
+
+# Inverse Document Frequency (IDF)
+idf_vectorizer = TfidfVectorizer(use_idf=True)
+idf_representation = idf_vectorizer.fit_transform([document])
+idf_features = idf_vectorizer.get_feature_names_out()
+
+# Print the results
+print("Tokenization:")
+print(tokens)
+print("\nPOS Tagging:")
+print(pos_tags)
+print("\nStop Words Removal:")
+print(filtered_tokens)
+print("\nStemming:")
+print(stemmed_tokens)
+print("\nLemmatization:")
+print(lemmatized_tokens)
+print("\nTerm Frequency (TF):")
+print(tf_representation.toarray())
+print("Features:", tf_features)
+print("\nInverse Document Frequency (IDF):")
+print(idf_representation.toarray())
+print("Features:", idf_features)

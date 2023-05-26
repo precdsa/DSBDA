@@ -1,0 +1,22 @@
+'''4. Data Wrangling, I
+Data Formatting and Data Normalization: Summarize the types of variables by checking the data types (i.e., character, numeric, integer, factor, and logical) of the variables in the data set. If variables are not in the correct data type, apply proper type conversions.
+To check the data type
+
+To change the data type (data type of ‘petal length (cm)'changed to int)'''
+
+import pandas as pd
+import seaborn as sns
+
+data = sns.load_dataset('iris')
+data
+#formatting
+data.dtypes
+data['petal_length']=data['petal_length'].astype("int")
+data.dtypes
+#normalization
+from sklearn import preprocessing
+x=data[['petal_length']].values.astype(float)
+min_max_scaler = preprocessing.MinMaxScaler()
+x_scaled = min_max_scaler.fit_transform(x)
+df_normalized = pd.DataFrame(x_scaled)
+df_normalized

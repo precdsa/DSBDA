@@ -1,0 +1,51 @@
+'''8.Write a Python program to display some basic statistical details like percentile, mean, standard deviation etc. of the species of ‘Iris-setosa’, ‘Iris-versicolor’ and ‘Iris- versicolor’ of iris.csv dataset.'''
+
+import pandas as pd
+
+# Read the iris dataset
+df = pd.read_csv("D:\TE(Sixth Semister)\DSBDA\Datasets\Iris.csv")
+
+# Select data for 'Iris-setosa' species
+setosa_data = df[df['species'] == 'Iris-setosa']
+
+# Calculate percentile, mean, and standard deviation for 'Iris-setosa'
+setosa_percentile = setosa_data.describe(percentiles=[0.25, 0.5, 0.75])['sepal_length']
+setosa_mean = setosa_data['sepal_length'].mean()
+setosa_std = setosa_data['sepal_length'].std()
+
+# Select data for 'Iris-versicolor' species
+versicolor_data = df[df['species'] == 'Iris-versicolor']
+
+# Calculate percentile, mean, and standard deviation for 'Iris-versicolor'
+versicolor_percentile = versicolor_data.describe(percentiles=[0.25, 0.5, 0.75])['sepal_length']
+versicolor_mean = versicolor_data['sepal_length'].mean()
+versicolor_std = versicolor_data['sepal_length'].std()
+
+# Select data for 'Iris-virginica' species
+virginica_data = df[df['species'] == 'Iris-virginica']
+
+# Calculate percentile, mean, and standard deviation for 'Iris-virginica'
+virginica_percentile = virginica_data.describe(percentiles=[0.25, 0.5, 0.75])['sepal_length']
+virginica_mean = virginica_data['sepal_length'].mean()
+virginica_std = virginica_data['sepal_length'].std()
+
+# Print the results
+print("Iris-setosa:")
+print("Percentiles:")
+print(setosa_percentile)
+print("Mean:", setosa_mean)
+print("Standard Deviation:", setosa_std)
+print()
+
+print("Iris-versicolor:")
+print("Percentiles:")
+print(versicolor_percentile)
+print("Mean:", versicolor_mean)
+print("Standard Deviation:", versicolor_std)
+print()
+
+print("Iris-virginica:")
+print("Percentiles:")
+print(virginica_percentile)
+print("Mean:", virginica_mean)
+print("Standard Deviation:", virginica_std)

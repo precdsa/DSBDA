@@ -1,0 +1,25 @@
+'''5.Turn categorical variables into quantitative variables in Python.
+
+count of missing values of a specific column.
+groupby count of missing values of a column'''
+
+import pandas as pd
+
+# Specify the path to the dataset file on your PC
+dataset_path = "D:\TE(Sixth Semister)\DSBDA\Datasets\Social_Network_Ads.csv"
+
+# Load the dataset into a pandas DataFrame
+df = pd.read_csv(dataset_path)
+
+# Convert Categorical Variables to Quantitative Variables
+df['Age'] = pd.Categorical(df['Age'])
+df['Age'] = df['Age'].cat.codes
+
+# Count Missing Values of a Specific Column
+missing_count = df['Age'].isnull().sum()
+print("Missing values in 'Age':", missing_count)
+
+# Groupby Count of Missing Values of a Column
+missing_counts = df.groupby('Age')['Gender'].apply(lambda x: x.isnull().sum())
+print("Groupby count of missing values in Group By Gender:\n", missing_counts)
+

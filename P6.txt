@@ -1,0 +1,96 @@
+'''6.Data Wrangling, II
+Create an “Academic performance” dataset of students and perform the following operations using Python.
+1.	Scan all variables for missing values and inconsistencies. If there are missing values and/or inconsistencies, use any of the suitable techniques to deal with them.
+2.	Scan all numeric variables for outliers. If there are outliers, use any of the suitable techniques to deal with them.
+3.	Apply data transformations on at least one of the variables. The purpose of this transformation should be one of the following reasons: to change the scale for better understanding of the variable, to convert a non-linear relation into a linear one, or to decrease the skewness and convert the distribution into a normal distribution.'''
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+data = pd.read_csv(r"C:\Users\acmin\OneDrive\Documents\DSBDA_anuj\DSBDA\Datasets\movies edited.csv")
+data
+
+data.isnull()
+
+dataset = pd.isnull(data['votes'])
+data[dataset]
+
+data.notnull()
+
+dataset1 = pd.isnull(data["gross_total"])
+data[dataset1]
+
+
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+
+data['gross_total'] = le.fit_transform(data['gross_total'])
+
+newdata = data
+data
+
+
+missing_values = ['Na', 'Na']
+data  = pd.read_csv(r"C:\Users\acmin\OneDrive\Documents\DSBDA_anuj\DSBDA\Datasets\movies edited.csv" , na_values=missing_values)
+data
+
+data.head(n=5)
+ndata =data
+ndata.fillna(0)
+
+data['imdb_rating'] = data['imdb_rating'].fillna(data['imdb_rating'].mean())
+data['imdb_rating']
+
+data[''] = data['imdb_rating'].fillna(data['imdb_rating'].median())
+data['imdb_rating'] = data['imdb_rating'].fillna(data['imdb_rating'].std())
+
+data['imdb_rating'] = data['imdb_rating'].fillna(data['imdb_rating'].min())
+data['imdb_rating'] = data['imdb_rating'].fillna(data['imdb_rating'].max())
+
+data['imdb_rating']
+
+m_v=data['imdb_rating'].mean()
+data['imdb_rating'].fillna(value=m_v, inplace=True)
+data
+
+
+ndata.replace(to_replace = np.nan, value = -99)
+
+data.dropna()
+
+data.dropna(axis=1)
+
+new_data = data.dropna(axis = 0, how ='any')
+new_data
+
+
+################# Plotting ########
+
+col = ['year_of_release',  'imdb_rating']
+data.boxplot(col)
+
+
+print(np.where(data['year_of_release']>1945))
+print(np.where(data['imdb_rating']<5))
+
+
+fig, ax = plt.subplots(figsize = (19,19))
+ax.scatter( data['index'], data['year_of_release'])
+plt.show()
+
+z = np.abs(stats.zscore(data['imdb_rating']))
+print(z)
+threshold = 0.5
+
+sample_outliers = np.where(z <threshold)
+sample_outliers 
+
+new_df=data
+for i in sample_outliers:
+   new_df.drop(i,inplace=True)
+   new_df
+
+new_df['imdb_rating'].plot(kind = 'hist')

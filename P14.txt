@@ -1,0 +1,22 @@
+'''14. Data Visualization III
+Download	the	Iris	flower	dataset	or	any	other	dataset	into	a	DataFrame.	(e.g., https://archive.ics.uci.edu/ml/datasets/Iris ). Scan the dataset and give the inference as:
+1.	List down the features and their types (e.g., numeric, nominal) available in the dataset.
+2.	Create a histogram for each feature in the dataset to illustrate the feature distributions.
+3.	Create a box plot for each feature in the dataset.
+Compare distributions and identify outliers.'''
+
+import seaborn as sns
+df= sns.load_dataset('iris')
+df
+column =len(list(df))
+column
+df.info
+sns.histplot(df['sepal_length'])
+sns.histplot(df['sepal_width'])
+sns.histplot(df['petal_length'])
+sns.histplot(df['petal_width'])
+
+sns.boxplot(x='species',y='sepal_length',data=df)
+sns.boxplot(x='species',y='petal_length',data=df)
+sns.boxplot(x='species',y='sepal_width',data=df)
+sns.boxplot(x='species',y='sepal_width',data=df)

@@ -1,0 +1,64 @@
+'''2.Data Wrangling, I
+Perform the following operations using Python on any open source dataset (e.g., data.csv)
+1.	Import all the required Python Libraries.
+2.	Locate an open source data from the web (e.g. https://www.kaggle.com). Provide a clear description of the data and its source (i.e., URL of the web site).
+3.	Load the Dataset into pandas data frame.
+4.	Data Preprocessing: check for missing values in the data using pandas isnull(), describe() function to get some initial statistics. Provide variable descriptions. Types of variables etc. Check the dimensions of the data frame.
+       Return the dtypes in the Dataset. 
+This returns a Series with the data type of each column. The result’s index is the original Dataset’s columns. Columns with mixed types are stored with the object dtype.
+Return the columns values in the Dataset in array format
+Generate descriptive statistics.
+to view some basic statistical details like percentile, mean, std etc. of a data frame or a series of numeric values.
+
+
+
+Analyzes both numeric and object series, as well as Dataset column sets of mixed data types.Read the Data Column wise.Sort object by labels (along an axis).
+'''
+
+import pandas as pd 
+import numpy as np
+df= pd.read_csv(r"C:\Users\Apurva\Desktop\dsbda\DSBDA\Databases\movies edited.csv")
+df
+df.inull()
+df.describe()
+df.head(n=5)
+df.tail(n=5)
+df.index
+df.columns
+df.shape()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+df= pd.read_csv(r"C:\Users\Apurva\Desktop\dsbda\DSBDA\Databases\movies edited.csv")
+df
+#mising values
+df.isnull()
+series=pd.isnull(df["votes"])
+df[series]
+
+df.describe(include='all')
+df.dtypes
+df.shape
+df.index
+#arrat format
+df.columns.values
+#read data column wise
+df['votes']
+#sort obj by lables
+df.sort_index(axis=1,ascending=False)
